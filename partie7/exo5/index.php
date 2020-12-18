@@ -2,18 +2,12 @@
 
 var_dump($_POST);
 
-if (isset($_POST['lastname']) && isset($_POST['firstname'])) {
-    if (preg_match('/^[a-zA-Z][a-zéèàêâùïüë]+$/', $_POST['lastname'])) {
-        $lastname = htmlspecialchars($_POST['lastname']);
-    } else {
-        $messageErrorLastname = 'Veuillez renseigner correctement le champ';
-    }
-    if (preg_match('/^[a-zA-Z][a-zéèàêâùïüë]+$/', $_POST['firstname'])) {
-        $firstname = htmlspecialchars($_POST['firstname']);
-    } else {
-        $messageErrorFirstname = 'Veuillez renseigner correctement le champ';
-    }
+if (isset($_POST['civility']) && isset($_POST['lastname']) && isset($_POST['firstname'])) {
+    $civility = $_POST['civility'];
+    $lastname = $_POST['lastname'];
+    $firstname = $_POST['firstname'];
 } else {
+    $civility = 'Non défini';
     $lastname = 'Non défini';
     $firstname = 'Non défini';
 }
@@ -32,11 +26,11 @@ if (isset($_POST['lastname']) && isset($_POST['firstname'])) {
 
     <form action="index.php" method="POST" class="container">
         <div>
-            <label for="gender">Votre civilité :</label>
-            <select class="custom-select">
-                <option selected>Choisir :</option>
-                <option value="1">Madame</option>
-                <option value="2">Monsieur</option>
+            <label for="civility">Votre genre :</label>
+            <select name="civility" class="custom-select">
+                <option value="null" disabled selected>Veuillez choisir :</option>
+                <option value="madame">Madame</option>
+                <option value="monsieur">Monsieur</option>
             </select>
         </div>
 
@@ -54,7 +48,7 @@ if (isset($_POST['lastname']) && isset($_POST['firstname'])) {
         <!-- <button type="submit" class="btn btn-danger">Retour index</button> -->
     </form>
     
-    <p>Votre genre est : <?= $gender ?></p>
+    <p>Votre civilité est : <?= $civility ?></p>
     <p>Votre nom est : <?= $lastname ?></p>
     <p>Votre prénom est : <?= $firstname ?></p>
 
