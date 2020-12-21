@@ -1,0 +1,26 @@
+#imgPreview {
+	width: 200px; 
+	max-height: 200px;
+	display: block;
+}
+
+.container{
+	border: thick double pink;
+}
+
+h2{
+	font-weight: bold;
+	text-decoration: underline ;
+}
+
+#bouton:hover{
+	letter-spacing: 6px;
+}
+
+#bouton{
+    letter-spacing: 2px;
+    font-size: 1em;
+	transition: 0.5s;
+	background-color: #F48FB1;
+    color: black;
+}
