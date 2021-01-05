@@ -49,7 +49,6 @@ if (isset($_POST['password'])) {
             <input type="submit" value="valider" class="btn btn-secondary">
 
             <a href="index2.php" type="submit" class="btn btn-primary">Envoyer</a>
-            <a href="index3.php" type="submit" class="btn btn-primary">modifier index</a>
         </div>
     </form>
 
