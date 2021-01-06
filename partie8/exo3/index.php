@@ -45,7 +45,7 @@ if (isset($_POST['password'])) {
             <label class="form-label" for="password">Password</label>
         </div>
 
-        <div class="form-outline mb-4 text-center">
+        <div class="form-outline text-center">
             <input type="submit" value="valider" class="btn btn-secondary">
 
             <a href="index2.php" type="submit" class="btn btn-primary">Envoyer</a>

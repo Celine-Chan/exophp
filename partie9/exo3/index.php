@@ -1,10 +1,11 @@
 <?php
 // english
-// echo date('l j F Y');
+echo date('l j F Y, H:i') . '</br>';
 
 // french
-setlocale(LC_TIME, 'fra_fra');
-echo strftime('%A %d %B %G');
+date_default_timezone_set('Europe/Paris');
+setlocale(LC_TIME, 'fr.utf8');
+echo strftime('%A %d %B %G, %H:%M:%S');
 
 ?>
 <!DOCTYPE html>

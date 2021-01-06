@@ -1,7 +1,7 @@
 <?php
 //Afficher la date du jour - 20 jours.
-setlocale(LC_TIME, 'fra_fra');
-echo strftime('%A %d %B %G', strtotime('-20 days'));
+setlocale(LC_TIME, 'fr.utf8');
+echo strftime('%A %d %B %G', strtotime('-22 days'));
 
 ?>
 <!DOCTYPE html>

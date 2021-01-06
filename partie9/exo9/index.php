@@ -1,5 +1,34 @@
 <?php
 
+$monthsArray = [
+    1 => 'Janvier',
+    2 => 'Février',
+    3 => 'Mars',
+    4 => 'Avril',
+    5 => 'Mai',
+    6 => 'Juin',
+    7 => 'Juillet',
+    8 => 'Août',
+    9 => 'Septembre',
+    10 => 'Octobre',
+    11 => 'Novembre',
+    12 => 'Décembre'
+];
+
+$startIntYears = 2015;
+$endIntYears = 2025;
+
+// déterminer le 1er jour du mois.
+$firstDayMonth = date('Y-m-01');
+//echo $firstDayMonth;
+
+//calculer le nombre de jours dans le mois.
+$numberDays = cal_days_in_month(CAL_GREGORIAN, 2, 2016);
+//$numberDaysInMonth = date('t', mktime());
+
+//calculer le nombre de case du calendrier (par mois).
+
+//dessiner un tableau avec thead with jour de la semaine.
 
 
 ?>
@@ -9,50 +38,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.css" rel="stylesheet" />
-    <title>exo 3</title>
-    <title>Exo 8</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Exo 9</title>
 </head>
 
 <body>
 
-    <p class="text-center"><strong>Sélectionner une date</strong></p>
+    <p class="text-center" style="color: #C51162; font-size: 4rem"><strong>TP Calendrier</strong></p>
 
-    <form class="form-inline text-center">
-        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+    <form class="form-inline container mt-5" method="GET" action="index.php">
+        <select class="form-select my-1 mr-sm-2" id="chooseMonth" name="selectMonth">
             <option selected>Mois</option>
-            <option value="1">Janvier</option>
-            <option value="2">Février</option>
-            <option value="3">Mars</option>
-            <option value="4">Avril</option>
-            <option value="5">Mai</option>
-            <option value="6">Juin</option>
-            <option value="7">Juillet</option>
-            <option value="8">Août</option>
-            <option value="9">Septembre</option>
-            <option value="10">Octobre</option>
-            <option value="11">Novembre</option>
-            <option value="12">Décembre</option>
+
+            <?php
+            foreach ($monthsArray as $keyMonths => $valueMonths) { ?>
+
+                <option value="<?= $keyMonths ?>"><?= $valueMonths ?></option>
+
+            <?php } ?>
         </select>
 
-        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+        <select class="form-select my-1 mr-sm-2 mt-3" id="chooseYear" name="selectYear">
             <option selected>Année</option>
-            <option value="1">2020</option>
-            <option value="2">2021</option>
-            <option value="3">2022</option>
+
+            <?php
+            for ($startIntYears; $startIntYears <= $endIntYears; $startIntYears++) { ?>
+
+                <option><?= $startIntYears ?></option>
+
+            <?php } ?>
         </select>
 
-        <button type="submit" class="btn btn-secondary my-1">Submit</button>
+        <button type="submit" class="btn btn-lg my-1 mt-3" style="background-color: #C51162; color: white;">Afficher</button>
     </form>
 
+    <table class="table table-bordered container mt-5">
+        <thead>
+            <tr class="text-center">
+                <th scope="col" class="table-info">Lundi</th>
+                <th scope="col" class="table-success">Mardi</th>
+                <th scope="col" class="table-danger">Mercredi</th>
+                <th scope="col" class="table-warning">Jeudi</th>
+                <th scope="col" class="table-info">Vendredi</th>
+                <th scope="col" class="table-success">Samedi</th>
+                <th scope="col" class="table-danger">Dimanche</th>
+            </tr>
+        </thead>
 
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"></script>
+        <tbody class="border-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 
 </html>
