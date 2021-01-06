@@ -87,53 +87,53 @@ $numberDays = cal_days_in_month(CAL_GREGORIAN, 2, 2016);
 
         <tbody class="border-dark">
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
             </tr>
 
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
             </tr>
 
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
             </tr>
 
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
             </tr>
 
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
+                <th class="table-light"></th>
+                <th class="table-secondary"></th>
             </tr>
         </tbody>
     </table>
