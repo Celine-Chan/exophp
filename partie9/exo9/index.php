@@ -19,17 +19,13 @@ $startIntYears = 2015;
 $endIntYears = 2025;
 
 // déterminer le 1er jour du mois.
-$firstDayMonth = date('Y-m-01');
-//echo $firstDayMonth;
+//$firstDayMonth = date('Y-m-01');
+$firstDay = strftime('%u', mktime(0, 0, 0, $_GET['selectMonth'], 1, $_GET['selectYear']));
+//var_dump($firstDay);
 
 //calculer le nombre de jours dans le mois.
-$numberDays = cal_days_in_month(CAL_GREGORIAN, 2, 2016);
-//$numberDaysInMonth = date('t', mktime());
-
-//calculer le nombre de case du calendrier (par mois).
-
-//dessiner un tableau avec thead with jour de la semaine.
-
+$numberDays = cal_days_in_month(CAL_GREGORIAN, $_GET['selectMonth'], $_GET['selectYear']);
+//var_dump($numberDays);
 
 ?>
 <!DOCTYPE html>
@@ -39,12 +35,13 @@ $numberDays = cal_days_in_month(CAL_GREGORIAN, 2, 2016);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Exo 9</title>
 </head>
 
 <body>
 
-    <p class="text-center" style="color: #C51162; font-size: 4rem"><strong>TP Calendrier</strong></p>
+    <p class="text-center titleCalendar"><strong>TP Calendrier</strong></p>
 
     <form class="form-inline container mt-5" method="GET" action="index.php">
         <select class="form-select my-1 mr-sm-2" id="chooseMonth" name="selectMonth">
@@ -69,10 +66,10 @@ $numberDays = cal_days_in_month(CAL_GREGORIAN, 2, 2016);
             <?php } ?>
         </select>
 
-        <button type="submit" class="btn btn-lg my-1 mt-3" style="background-color: #C51162; color: white;">Afficher</button>
+        <button type="submit" class="btn btn-lg my-1 mt-3 btn-outline-danger shadow">Afficher</button>
     </form>
 
-    <table class="table table-bordered container mt-5">
+    <table class="table table-bordered container mt-5 shadow">
         <thead>
             <tr class="text-center">
                 <th scope="col" class="table-info">Lundi</th>
@@ -85,55 +82,30 @@ $numberDays = cal_days_in_month(CAL_GREGORIAN, 2, 2016);
             </tr>
         </thead>
 
-        <tbody class="border-dark">
+        <tbody class="border-dark opacityBack">
             <tr>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-            </tr>
+                <!-- boucle for à partir du nombre de jours dans le mois -->
+                <?php
+                $currentDay = 1;
+                for ($case = 1; $case <= ($numberDays + $firstDay) - 1; $case++) {
+                    if ($case >= $firstDay) { ?>
+                        <td>
+                            <?= $currentDay ?>
+                        </td>
+                    <?php
+                        $currentDay++;
+                    } else {
+                    ?>
 
-            <tr>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-            </tr>
+                        <td>
 
-            <tr>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-            </tr>
+                        </td>
 
-            <tr>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-            </tr>
+                <?php
+                    }
+                }
+                ?>
 
-            <tr>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
-                <th class="table-light"></th>
-                <th class="table-secondary"></th>
             </tr>
         </tbody>
     </table>
