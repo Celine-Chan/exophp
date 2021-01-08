@@ -18,13 +18,21 @@ $monthsArray = [
 $startIntYears = 2015;
 $endIntYears = 2025;
 
+if (isset($_GET['buttonCalendar'])) {
+    $firstDay = strftime('%u', mktime(0, 0, 0, $_GET['selectMonth'], 1, $_GET['selectYear']));
+    $numberDays = cal_days_in_month(CAL_GREGORIAN, $_GET['selectMonth'], $_GET['selectYear']);
+} else {
+    $numberDays = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+    $firstDay = strftime('%u', time());
+}
+
 // déterminer le 1er jour du mois.
 //$firstDayMonth = date('Y-m-01');
-$firstDay = strftime('%u', mktime(0, 0, 0, $_GET['selectMonth'], 1, $_GET['selectYear']));
+
 //var_dump($firstDay);
 
 //calculer le nombre de jours dans le mois.
-$numberDays = cal_days_in_month(CAL_GREGORIAN, $_GET['selectMonth'], $_GET['selectYear']);
+
 //var_dump($numberDays);
 
 ?>
@@ -66,7 +74,7 @@ $numberDays = cal_days_in_month(CAL_GREGORIAN, $_GET['selectMonth'], $_GET['sele
             <?php } ?>
         </select>
 
-        <button type="submit" class="btn btn-lg my-1 mt-3 btn-outline-danger shadow">Afficher</button>
+        <button type="submit" class="btn btn-lg my-1 mt-3 btn-outline-danger shadow" name="buttonCalendar">Afficher</button>
     </form>
 
     <table class="table table-bordered container mt-5 shadow">
@@ -83,11 +91,14 @@ $numberDays = cal_days_in_month(CAL_GREGORIAN, $_GET['selectMonth'], $_GET['sele
         </thead>
 
         <tbody class="border-dark opacityBack">
+        <?php 
+        $currentDay = 1;
+        for ($case = 1; $case <= ($numberDays + $firstDay) - 1; $case++) {                     
+            if ($case % 7 == 1) {
+        ?>        
             <tr>
-                <!-- boucle for à partir du nombre de jours dans le mois -->
                 <?php
-                $currentDay = 1;
-                for ($case = 1; $case <= ($numberDays + $firstDay) - 1; $case++) {
+            }
                     if ($case >= $firstDay) { ?>
                         <td>
                             <?= $currentDay ?>
@@ -96,17 +107,18 @@ $numberDays = cal_days_in_month(CAL_GREGORIAN, $_GET['selectMonth'], $_GET['sele
                         $currentDay++;
                     } else {
                     ?>
-
-                        <td>
-
-                        </td>
-
+                        <td></td>
+                <?php
+                    }
+                    if ($case % 7 == 0) {
+                ?>
+                </tr>
                 <?php
                     }
                 }
                 ?>
 
-            </tr>
+            
         </tbody>
     </table>
 

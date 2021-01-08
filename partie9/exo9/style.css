@@ -17,6 +17,7 @@ tbody{
     color: white;
     font-weight: bold;
     font-size: 1.5rem;
+    text-shadow: black 2px 2px;
 }
 
 td, tr{
@@ -26,8 +27,12 @@ td, tr{
 
 td:hover{
     background-color: #BF360C;
-    opacity: 1;
     color: black;
     font-weight: bold;
     font-size: 2rem;
+    text-shadow: none;
+}
+
+tr{
+    vertical-align: middle;
 }
