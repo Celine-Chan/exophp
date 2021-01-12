@@ -1,3 +1,8 @@
+<?php
+
+require_once 'controller_index.php';
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -10,115 +15,160 @@
 </head>
 
 <body>
+        <h1 class="text-center mb-5">Formulaire d'enregistrement</h1>
 
-    <h1 class="text-center mb-5">Formulaire d'enregistrement</h1>
+        <form novalidate action="index.php" method="POST" class="container col-6 row g-3 mx-auto">
 
-    <form action="index.php" method="POST" class="container col-6 row g-3 mx-auto">
-
-        <div class="mb-3 col-md-6">
-            <label for="lastName" class="form-label">Votre nom :</label>
-            <input type="text" class="form-control" id="lastName" placeholder="Nom" required>
-        </div>
-
-        <div class="mb-3 col-md-6">
-            <label for="firstName" class="form-label">Votre prénom :</label>
-            <input type="text" class="form-control" id="firstName" placeholder="Prénom" required>
-        </div>
-
-        <div class="mb-3 col-md-6">
-            <label for="birthDate" class="form-label">Votre date de naissance :</label>
-            <input type="date" class="form-control" id="birthDate" placeholder="jj/mm/aaaa" required>
-        </div>
-
-        <div class="mb-3 col-md-6">
-            <label for="country" class="form-label">Votre pays de naissance :</label>
-            <input type="text" class="form-control" id="country" placeholder="pays de naissance" required>
-        </div>
-
-        <div class="mb-3 col-md-6">
-            <label for="nationality" class="form-label">Votre nationnalité :</label>
-            <input type="text" class="form-control" id="nationality" placeholder="nationalité" required>
-        </div>
-
-        <div class="mb-3 col-md-6">
-            <label for="address" class="form-label">Votre adresse :</label>
-            <input type="text" class="form-control" id="address" placeholder="adresse" required>
-        </div>
-
-        <div class="mb-3 col-md-6">
-            <label for="mail" class="form-label">Votre email :</label>
-            <input type="email" class="form-control" id="address" placeholder="email" required>
-        </div>
-
-        <div class="mb-3 col-md-6">
-            <label for="phoneNumber" class="form-label">Votre numéro de téléphone :</label>
-            <input type="text" class="form-control" id="phoneNumber" placeholder="00.00.00.00.00" required>
-        </div>
-
-        <select class="form-select mb-3 col-md-6" aria-label="Default select example" required>
-            <option selected>Plus haut diplôme obtenu : </option>
-            <option value="1">sans</option>
-            <option value="2">Bac</option>
-            <option value="3">Bac+2</option>
-            <option value="4">Bac+3 ou supérieur</option>
-        </select>
-
-        <div class="mb-3 col-md-6">
-            <label for="poleEmploiNumber" class="form-label">Votre numéro Pôle Emploi :</label>
-            <input type="text" class="form-control" id="poleEmploiNumber" placeholder="numéro Pôle Emploi" required>
-        </div>
-
-        <select class="form-select mb-3 col-md-6" aria-label="Default select example" required>
-            <option selected>Nombre de badge obtenu : </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10 ou plus</option>
-        </select>
-
-        <div class="mb-3 col-md-6">
-            <label for="codecademyCount" class="form-label">Votre lien compte Codecademy :</label>
-            <input type="url" class="form-control" id="codecademyCount" placeholder="lien codecademy" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="hero" class="form-label">Si vous étiez un.e super héro.ïne.s, qui seriez-vous et pourquoi ?</label>
-            <textarea class="form-control" id="hero" rows="3" required></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="hack" class="form-label">Racontez-nous un de vos "hacks" (pas forcément technique ou informatique)</label>
-            <textarea class="form-control" id="hack" rows="3" required></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="skills" class="form-label">Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ?</label>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                    Oui
-                </label>
+            <div class="mb-3 col-md-6">
+                <label for="lastName" class="form-label">Votre nom :</label>
+                <!-- ternaire dans value => permet de laisser le nom dans le champ après validation-->
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="ex: Doe" value="<?= isset($_POST['lastName']) ? $_POST['lastName'] : '' ?>" required>
+                <div class="text-danger">
+                    <!-- message d'erreur si pas validé -->
+                    <span><?= isset($errorMessages['lastName']) ? $errorMessages['lastName'] : '' ?></span>
+                    
+                </div>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                    Non
-                </label>
+
+            <div class="mb-3 col-md-6">
+                <label for="firstName" class="form-label">Votre prénom :</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="ex: John" value="<?= isset($_POST['firstName']) ? $_POST['firstName'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['firstName']) ? $errorMessages['firstName'] : '' ?></span>
+                </div>
             </div>
-        </div>
 
-        <div class="col-12 text-center mb-3">
-            <button class="btn colorButton" type="submit">Submit form</button>
-        </div>
-    </form>
+            <div class="mb-3 col-md-6">
+                <label for="birthDate" class="form-label">Votre date de naissance :</label>
+                <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="05/12/2050" value="<?= isset($_POST['birthDate']) ? $_POST['birthDate'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['birthDate']) ? $errorMessages['birthDate'] : '' ?></span>
+                </div>
+            </div>
 
-    <footer class="mt-5">
+            <div class="mb-3 col-md-6">
+                <label for="country" class="form-label">Votre pays de naissance :</label>
+                <input type="text" class="form-control" id="country" name="country" placeholder="ex: Atlantide" value="<?= isset($_POST['country']) ? $_POST['country'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['country']) ? $errorMessages['country'] : '' ?></span>
+                </div>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="nationality" class="form-label">Votre nationalité :</label>
+                <input type="text" class="form-control" id="nationality" name="nationality" placeholder="ex: wookiee" value="<?= isset($_POST['country']) ? $_POST['country'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['nationality']) ? $errorMessages['nationality'] : '' ?></span>
+                </div>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="address" class="form-label">Votre adresse :</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="ex: 24 place de Tatooine 87520 Mordor" value="<?= isset($_POST['address']) ? $_POST['address'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['address']) ? $errorMessages['address'] : '' ?></span>
+                </div>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="mail" class="form-label">Votre email :</label>
+                <input type="email" class="form-control" id="mail" name="mail" placeholder="hobbit4ever@gamil.com" value="<?= isset($_POST['mail']) ? $_POST['mail'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['mail']) ? $errorMessages['mail'] : '' ?></span>
+                </div>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="phoneNumber" class="form-label">Votre numéro de téléphone :</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="01.23.45.67.89" value="<?= isset($_POST['phoneNumber']) ? $_POST['phoneNumber'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['phoneNumber']) ? $errorMessages['phoneNumber'] : '' ?></span>
+                </div>
+            </div>
+
+            <select class="form-select mb-3 col-md-6" aria-label="Default select example" name="certificate" required>
+                <option selected>Plus haut diplôme obtenu : </option>
+                <option value="1">sans</option>
+                <option value="2">Bac</option>
+                <option value="3">Bac+2</option>
+                <option value="4">Bac+3 ou supérieur</option>
+            </select>
+
+            <div class="mb-3 col-md-6">
+                <label for="poleEmploiNumber" class="form-label">Votre numéro Pôle Emploi :</label>
+                <input type="text" class="form-control" id="poleEmploiNumber" name="poleEmploiNumber" placeholder="ex: 1234567s" value="<?= isset($_POST['poleEmploiNumber']) ? $_POST['poleEmploiNumber'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['poleEmploiNumber']) ? $errorMessages['poleEmploiNumber'] : '' ?></span>
+                </div>
+            </div>
+
+            <select class="form-select mb-3 col-md-6" aria-label="Default select example" name="badge" required>
+                <option selected>Nombre de badge obtenu : </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10 ou plus</option>
+            </select>
+
+            <div class="mb-3 col-md-6">
+                <label for="codecademyCount" class="form-label">Votre lien compte Codecademy :</label>
+                <input type="url" class="form-control" id="codecademyCount" name="codecademyCount" placeholder="ex: https://www.codecademy.com/" value="<?= isset($_POST['codecademyCount']) ? $_POST['codecademyCount'] : '' ?>" required>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['codecademyCount']) ? $errorMessages['codecademyCount'] : '' ?></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="hero" class="form-label">Si vous étiez un.e super héro.ïne.s, qui seriez-vous et pourquoi ?</label>
+                <textarea class="form-control" id="hero" name="hero" rows="3" value="<?= isset($_POST['hero']) ? $_POST['hero'] : '' ?>" required></textarea>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['hero']) ? $errorMessages['hero'] : '' ?></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="hack" class="form-label">Racontez-nous un de vos "hacks" (pas forcément technique ou informatique)</label>
+                <textarea class="form-control" id="hack" name="hack" rows="3" value="<?= isset($_POST['hack']) ? $_POST['hack'] : '' ?>" required></textarea>
+                <div class="text-danger">
+                    <span><?= isset($errorMessages['hack']) ? $errorMessages['hack'] : '' ?></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="skills" class="form-label">Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Oui
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Non
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-12 text-center mb-3">
+                <button class="btn colorButton" type="submit">Envoyer</button>
+            </div>
+        </form>
+
+    <!-- <p>Votre Nom est : <strong><?= $lastName ?></strong></p>
+    <p>Votre Prénom est : <strong><?= $firstName ?></strong></p>
+    <p>Votre date de naissance est le <?= $birthDate ?></p>
+    <p>Votre pays de naissance :</p>
+    <p>Votre numéro de téléphone est le <?= $phoneNumber ?></p> -->
+    
+
+    <footer class="mt-5 pt-4">
         copyright : Céline Louvel 2021
     </footer>
 
