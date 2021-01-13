@@ -2,10 +2,10 @@
 
 $errorMessages = [];
 
-$date = date('d/m/Y');
+//$date = date('d/m/Y');
 
 $regexName = '/^[a-zA-Z]+$/';
-$regexBirthDate = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])+$/';
+$regexBirthDate = '/^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/';
 $regexAddress = '/^([0-9a-z\'àâéèêôùûçÀÂÉÈÔÙÛÇ\s-]{1,50})+$/';
 $regexMail = '/^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}+$/';
 $regexPhoneNumber = '/^0[1-68]([-. ]?[0-9]{2}){4}+$/';
@@ -32,7 +32,7 @@ $badgeArray = [
     10 => '10 ou plus'
 ];
 
-//var_dump($_POST);
+var_dump($_POST);
 
 //var_dump($errorMessages);
 
@@ -62,13 +62,16 @@ if (isset($_POST['submit'])) {
         if (!preg_match($regexBirthDate, $_POST['birthDate'])) {
             $errorMessages['birthDate'] = 'Veuillez saisir une date valide.';
         }
+        if ($_POST['birthDate'] >= date('Y-m-d')){
+            $errorMessages['birthDate'] = 'Date impossible !';
+        }
         if (empty($_POST['birthDate'])) {
             $errorMessages['birthDate'] = 'Veuillez saisir une date.';
         }
-        // if (isset($_POST['birthDate']) > $date){
-        //     $errorMessages['birthDate'] = 'Veuillez saisir une date dans le passé';
-        // }
     }
+
+    
+
     // country
     if (isset($_POST['country'])) {
         if (!preg_match($regexName, $_POST['country'])) {
@@ -144,7 +147,7 @@ if (isset($_POST['submit'])) {
     }
     // sécurité si quelqu'un essaie de modifier html/ajouter une option (en "inspecter")
     if (isset($_POST['badge'])) {
-        if (!array_key_exists($_POST['badge'], $certificateArray)) {
+        if (!array_key_exists($_POST['badge'], $badgeArray)) {
             $errorMessages['badge'] = 'Veuillez choisir un chiffre.';
         }
     }
