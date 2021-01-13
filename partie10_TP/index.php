@@ -110,8 +110,11 @@ require_once 'controller_index.php';
 
         <div>
             <select class="form-select mb-3 col-md-6" aria-label="Default select example" name="badge" required>
-                <option selected>Nombre de badge obtenu : </option>
-                
+                <option selected disabled>Nombre de badge obtenu : </option>
+                <?php 
+                foreach ($badgeArray as $key => $value) { ?>
+                    <option value="<?= $key ?>" <?= isset($_POST['badge']) && $_POST['badge'] == $key ? 'selected'  : '' ?> ><?= $value ?></option>
+                <?php } ?>
             </select>
             <div class="text-danger">
                 <span><?= isset($errorMessages['badge']) ? $errorMessages['badge'] : '' ?></span>

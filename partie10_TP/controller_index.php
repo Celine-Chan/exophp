@@ -120,7 +120,6 @@ if (isset($_POST['submit'])) {
     if (!isset($_POST['certificate'])) {
         $errorMessages['certificate'] = 'veuillez faire un choix.';
     }
-
     // sécurité si quelqu'un essaie de modifier html/ajouter une option (en "inspecter")
     if (isset($_POST['certificate'])) {
         if (!array_key_exists($_POST['certificate'], $certificateArray)) {
@@ -138,8 +137,17 @@ if (isset($_POST['submit'])) {
             $errorMessages['poleEmploiNumber'] = 'Veuillez saisir un numéro Pôle Emploi.';
         }
     }
-    //badge
 
+    //badge
+    if (!isset($_POST['badge'])) {
+        $errorMessages['badge'] = 'veuillez faire un choix.';
+    }
+    // sécurité si quelqu'un essaie de modifier html/ajouter une option (en "inspecter")
+    if (isset($_POST['badge'])) {
+        if (!array_key_exists($_POST['badge'], $certificateArray)) {
+            $errorMessages['badge'] = 'Veuillez choisir un chiffre.';
+        }
+    }
 
     //codecademyCount
     if (isset($_POST['codecademyCount'])) {
