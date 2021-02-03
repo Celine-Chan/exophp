@@ -17,6 +17,8 @@ require_once 'controller_index.php';
 <body>
     <h1 class="text-center mb-5">Formulaire d'enregistrement</h1>
 
+    <?php if ($showForm) { ?>
+        
     <form novalidate action="index.php" method="POST" class="container col-6 row g-3 mx-auto">
 
         <div class="mb-3 col-md-6">
@@ -56,7 +58,7 @@ require_once 'controller_index.php';
 
         <div class="mb-3 col-md-6">
             <label for="nationality" class="form-label">Votre nationalité :</label>
-            <input type="text" class="form-control" id="nationality" name="nationality" placeholder="ex: wookiee" value="<?= isset($_POST['country']) ? $_POST['country'] : '' ?>" required>
+            <input type="text" class="form-control" id="nationality" name="nationality" placeholder="ex: wookiee" value="<?= isset($_POST['nationality']) ? $_POST['nationality'] : '' ?>" required>
             <div class="text-danger">
                 <span><?= isset($errorMessages['nationality']) ? $errorMessages['nationality'] : '' ?></span>
             </div>
@@ -92,7 +94,7 @@ require_once 'controller_index.php';
                 <!-- les options sont dans un tableau en php controller_index.php -->
                 <?php 
                 foreach ($certificateArray as $key => $value) { ?>
-                    <option value="<?= $key ?>" <?= isset($_POST['certificate']) && $_POST['certificate'] == $key ? 'selected'  : '' ?> ><?= $value ?></option>
+                    <option value="<?= $key ?>" <?= isset($_POST['certificate']) && $_POST['certificate'] == $key ? 'selected' : '' ?> ><?= $value ?></option>
                 <?php } ?>
             </select>
             <div class="text-danger">
@@ -169,12 +171,24 @@ require_once 'controller_index.php';
         </div>
     </form>
 
-    <!-- <p>Votre Nom est : <strong><?= $lastName ?></strong></p>
-    <p>Votre Prénom est : <strong><?= $firstName ?></strong></p>
-    <p>Votre date de naissance est le <?= $birthDate ?></p>
-    <p>Votre pays de naissance :</p>
-    <p>Votre numéro de téléphone est le <?= $phoneNumber ?></p> -->
+    <?php } else { ?>
 
+    <p>Votre Nom est : <strong><?= $lastName ?></strong></p>
+    <p>Votre Prénom est : <strong><?= $firstName ?></strong></p>
+    <p>Votre date de naissance est le <strong><?= $birthDate ?></strong></p>
+    <p>Votre pays de naissance : <strong><?= $country ?></strong></p>
+    <p>Votre nationalité est : <strong><?= $nationality ?></strong></p>
+    <p>Votre adresse : <strong><?= $address ?></strong></p>
+    <p>Votre email est : <strong><?= $mail ?></strong></p>
+    <p>Votre numéro de téléphone est le <strong><?= $phoneNumber ?></strong></p>
+    <p>Votre plus haut diplôme est : <strong><?= $certificate ?></strong></p>
+    <p>Votre numéro Pôle Emploi est le : <strong><?= $poleEmploiNumber ?></strong></p>
+    <p>Nombre de badge obtenus : <strong><?= $badge ?></strong></p>
+    <p>Votre compte Codecademy : <strong><?= $codecademyCount ?></strong></p>
+    <p>Si vous étiez un.e super héro.ïne.s, qui seriez-vous et pourquoi ? <strong><?= $hero ?></strong></p>
+    <p>Racontez-nous un de vos "hacks" (pas forcément technique ou informatique) <strong><?= $hack ?></strong></p>
+    <p>Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ? <strong><?= $skills ?></strong></p>
+    <?php } ?>
 
     <footer class="mt-5 pt-4">
         copyright : Céline Louvel 2021

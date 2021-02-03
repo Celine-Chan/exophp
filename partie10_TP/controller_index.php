@@ -6,13 +6,13 @@ $errorMessages = [];
 
 $regexName = '/^[a-zA-Z]+$/';
 $regexBirthDate = '/^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/';
-$regexAddress = '/^([0-9a-z\'àâéèêôùûçÀÂÉÈÔÙÛÇ\s-]{1,50})+$/';
+$regexAddress = '/^([0-9a-z\'àâéèêôùûçÀÂÉÈÔÙÛÇ\s-]{1,50})+$/'; // regex a modifier ne marche pas
 $regexMail = '/^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}+$/';
 $regexPhoneNumber = '/^0[1-68]([-. ]?[0-9]{2}){4}+$/';
 $regexpoleEmploiNumber = '/^[0-9a-z]+$/';
 $regexTextArea = '/^[a-z0-9]+$/'; //ponctuation a rajouter dans la regex
 
-$certificateArray = [
+$certificateArray = [ 
     1 => 'sans',
     2 => 'Bac',
     3 => 'Bac+2',
@@ -32,7 +32,9 @@ $badgeArray = [
     10 => '10 ou plus'
 ];
 
-var_dump($_POST);
+$showForm = true;
+
+//var_dump($_POST);
 
 //var_dump($errorMessages);
 
@@ -70,8 +72,6 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    
-
     // country
     if (isset($_POST['country'])) {
         if (!preg_match($regexName, $_POST['country'])) {
@@ -92,9 +92,9 @@ if (isset($_POST['submit'])) {
     }
     //address
     if (isset($_POST['address'])) {
-        if (!preg_match($regexAddress, $_POST['address'])) {
-            $errorMessages['address'] = 'Veuillez saisir une adresse valide.';
-        }
+        // if (!preg_match($regexAddress, $_POST['address'])) {
+        //     $errorMessages['address'] = 'Veuillez saisir une adresse valide.';
+        // }
         if (empty($_POST['address'])) {
             $errorMessages['address'] = 'Veuillez saisir une adresse.';
         }
@@ -185,5 +185,26 @@ if (isset($_POST['submit'])) {
     if (!isset($_POST['skills'])) {
         $errorMessages['skills'] = 'Veuillez faire un choix.';
     }
+
+    if (count($errorMessages) == 0) {
+        $lastName = htmlspecialchars($_POST['lastName']);
+        $firstName = htmlspecialchars($_POST['firstName']);
+        $birthDate = htmlspecialchars($_POST['birthDate']);
+        $country = htmlspecialchars($_POST['country']);
+        $nationality = htmlspecialchars($_POST['nationality']);
+        $address = htmlspecialchars($_POST['address']);
+        $mail = htmlspecialchars($_POST['mail']);
+        $phoneNumber = htmlspecialchars($_POST['phoneNumber']);
+        $certificate = $certificateArray[$_POST['certificate']];
+        $poleEmploiNumber = htmlspecialchars($_POST['poleEmploiNumber']);
+        $badge = htmlspecialchars($_POST['badge']);
+        $codecademyCount = htmlspecialchars($_POST['codecademyCount']);
+        $hero = htmlspecialchars($_POST['hero']);
+        $hack = htmlspecialchars($_POST['hack']);
+        $skills = htmlspecialchars($_POST['skills']);
+        $showForm = false;
+    }
+
     // var_dump($errorMessages);
 }
+

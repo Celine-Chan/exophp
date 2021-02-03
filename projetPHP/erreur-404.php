@@ -1,15 +1,3 @@
-<?php
-
-require_once "controller_index.php";
-
-if (isset($_GET["page"])) {
-    $recupGet = $_GET["page"];
-    $menu = intval($recupGet);
-} else {
-    $menu = 0;
-}
-?>
-
 <!doctype html>
 <html lang="fr">
 
@@ -30,39 +18,22 @@ if (isset($_GET["page"])) {
 
 <body>
 
-    <div>
+    <div class="container">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-secondary sticky-top">
-            <a class="navbar-brand maconOcordoTitle">Maçonnerie Ocordo</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <h1 class="mt-2">Oups! Page introuvable</h1>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="accueil.html"><?= $XML->page[0]->menu ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="qui-sommes-nous.html"><?= $XML->page[1]->menu ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="nos-clients-temoignent.html"><?= $XML->page[2]->menu ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html"><?= $XML->page[3]->menu ?></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <div class="container">
-
-            <?php
-            echo $XML->page[$menu]->content;
-            ?>
+        <div>
+            <p>Vous avez tenté d’accéder à une page qui ne se trouve plus sur ce site. Veuillez revenir sur la page d'accueil afin de continuer votre navigation sur notre site.</p>
+            <p><strong><a href="/index.php">Revenir à l'accueil</a></strong></p>
         </div>
+
+        <div class="imgerror">
+            <img src="assets/img/img404error.jpg" alt="404error">
+        </div>
+
     </div>
+
+
 
     <footer class="position-sticky mt-5">
         <p class="text-center pt-4">Copyright: @TeamLaManu Théo, Céline et Antonin</p>
